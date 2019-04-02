@@ -141,3 +141,89 @@ Humanoid.prototype.greet = function() {
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+  function Villain(vAttr) {
+    Humanoid.call(this, vAttr);
+    this.superPower = vAttr.superPower;
+  }
+  Villain.prototype = Object.create(Humanoid.prototype);
+
+  Villain.prototype.hitToDeath = function(obj) {
+    let donzy = obj.healthPoints - obj.healthPoints;
+    donzy = obj.healthPoints;
+    return `${Hero.name}, your time is up. ${donzy} points. Play again if you dare!!`;
+  }
+
+  Villain.prototype.youKnowWhatSlap = function(obj) {
+    let points = obj.healthPoints -= 1;
+    return `That's what I thought ${obj.name} you now have ${points} points left :(`
+  }
+
+  function Hero(hAttr) {
+    Humanoid.call(this, hAttr);
+    this.heroWeapon = hAttr.heroWeapon;
+    this.superBlock = hAttr.superBlock;
+  }
+
+  Hero.prototype = Object.create(Humanoid.prototype);
+
+  Hero.prototype.block = function(obj) {
+    if (obj.hitToDeath && this.superBlock > 0) {
+      ! obj.hitToDeath;
+      return `No way ${obj.name}.   I still have ${obj.healthPoints} points.  Take your wrath elsewhere!`;
+
+    } else if (obj.hitToDeath && this.superBlock <= 0) {
+      return `Sorry no more SuperBlock. You're dead:(`; 
+    }
+  }
+  
+  Hero.prototype.putInPlace = function(obj) {
+    return `${obj.name} you now have ${obj.healthPoints -= 1} points`;
+  }
+
+  Hero.prototype.fatality = function(obj) {
+    let fin = obj.healthPoints - obj.healthPoints;
+    return `${obj.name}, nice try, but not nice enough. ${fin}, you lose!  Haha!`;
+  }
+
+  const superMan = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 5,
+      width: 4,
+      height: 4,
+    },
+    healthPoints: 10,
+    name: 'SupaMan',
+    team: 'Frosty BullWinkles',
+    weapons: [
+      'BullStaff',
+      'Nunchucku',
+    ],
+    language: 'Martian',
+    heroWeapon: 'Muscle Rock',
+    superBlock: 4,
+  })
+
+  const HulkHogan = new Villain({
+    createdAt: new Date(),
+    dimensions: {
+      length: 24,
+      width: 24,
+      height: 48,
+    },
+    healthPoints: 10,
+    name: 'HulkMeyster',
+    team: 'WWF',
+    weapons: [
+      'Atomic Leg',
+      'Lightning Bold',
+    ],
+    language: 'Hoganoid',
+    superPower: 'Atomic Leg drop'
+  })
+
+  console.log(HulkHogan.hitToDeath(superMan));
+  //superMan.superBlock = 0;
+  console.log(superMan.block(HulkHogan));
+  console.log(superMan.putInPlace(HulkHogan));
+  console.log(superMan.fatality(HulkHogan));

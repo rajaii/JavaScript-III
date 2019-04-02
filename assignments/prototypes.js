@@ -223,7 +223,7 @@ Humanoid.prototype.greet = function() {
   })
 
   console.log(HulkHogan.hitToDeath(superMan));
-  //superMan.superBlock = 0;
+  superMan.superBlock = 0;
   console.log(superMan.block(HulkHogan));
   console.log(superMan.putInPlace(HulkHogan));
   console.log(superMan.fatality(HulkHogan));
